@@ -1,0 +1,2 @@
+﻿import test from "node:test";import assert from "node:assert/strict";import{CosmeticSchema,AiQuerySchema}from"../lib/api/contracts.ts";
+test("cosmetic contract rejects malformed payload",()=>{assert.equal(CosmeticSchema.safeParse({id:""}).success,false)});test("AI queries require meaningful input",()=>{assert.equal(AiQuerySchema.safeParse({query:"hi"}).success,false);assert.equal(AiQuerySchema.safeParse({query:"show rare outfits"}).success,true)});

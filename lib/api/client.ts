@@ -1,0 +1,4 @@
+﻿import { mockAdapter } from "./mock";
+export class ApiError extends Error { constructor(public code:string,message:string,public status=500,public requestId?:string){super(message)} }
+export const errorMessage=(error:unknown)=>error instanceof ApiError&&error.status===429?"You’re moving fast. Try again in a moment.":error instanceof ApiError&&error.status===401?"Your session expired. Sign in again.":error instanceof Error?error.message:"This service is temporarily unavailable.";
+export const api={identity:{session:async()=>({success:true as const,data:{role:"member",permissions:["locker:write","ai:query"]}})},users:{getMe:async()=>({success:true as const,data:{name:"Fadhil",plan:"Intelligence Pro"}})},fortnite:{items:{list:mockAdapter.listCosmetics}},locker:{get:mockAdapter.getLocker},wishlist:{list:async()=>mockAdapter.listCosmetics("Ice")},search:{query:mockAdapter.listCosmetics},notifications:{list:mockAdapter.notifications},ai:{query:mockAdapter.aiQuery}};
