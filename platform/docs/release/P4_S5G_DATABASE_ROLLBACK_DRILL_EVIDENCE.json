@@ -1,0 +1,25 @@
+{
+  "phase": "P4-S5G",
+  "gate": "database_rollback_drill",
+  "environment": "staging",
+  "provider": "neon-postgres",
+  "project_id": "old-queen-82526886",
+  "database": "neondb",
+  "parent_branch_id": "br-summer-cherry-axhjkmh2",
+  "drill_branch_id": "br-icy-smoke-axekr3jp",
+  "drill_branch_name": "p4-s5g-rollback-drill",
+  "controlled_mutation": "rollback_drill_marker table created only on drill branch",
+  "mutation_verified": true,
+  "reset_from_parent_succeeded": true,
+  "mutation_absent_after_reset": true,
+  "canonical_tables_present_after_reset": [
+    "asset_records",
+    "collection_records",
+    "locker_records",
+    "wishlist_records"
+  ],
+  "parent_branch_untouched": true,
+  "temporary_branch_deleted": true,
+  "result": "PASS",
+  "scope": "database rollback drill only; does not certify application deployment rollback"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@neikos/persistence-prisma",
+  "version": "0.1.0-authoring",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prisma:validate": "prisma validate",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate:deploy": "prisma migrate deploy"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "7.9.1",
+    "@prisma/client": "7.9.1",
+    "pg": "8.16.3"
+  },
+  "devDependencies": {
+    "prisma": "7.9.1"
+  }
+}

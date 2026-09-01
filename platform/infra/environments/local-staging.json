@@ -1,0 +1,24 @@
+{
+  "environment": "staging",
+  "releaseVersion": "3.0.0-local-staging",
+  "deploymentId": "local-staging-20260816",
+  "publicOrigin": "http://127.0.0.1:3000",
+  "adapters": {
+    "identity": "local-staging-header-identity-v1",
+    "persistence": "local-staging-memory-persistence-v1",
+    "events": "local-staging-memory-events-v1",
+    "notifications": "local-staging-memory-notifications-v1",
+    "fortnite": "local-staging-fortnite-fixture-v1",
+    "ai": "local-staging-echo-ai-v1",
+    "observability": "local-staging-process-observability-v1"
+  },
+  "secretRefs": [],
+  "gates": {
+    "securityReview": "pending",
+    "stagingSmoke": "pending",
+    "failureRecovery": "pending",
+    "loadTest": "pending",
+    "rollbackDrill": "pending",
+    "approval": "pending"
+  }
+}

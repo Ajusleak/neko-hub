@@ -1,0 +1,35 @@
+{
+  "phase": "P4-S5F",
+  "title": "Live PostgreSQL Persistence Stress Smoke",
+  "date": "2026-08-16",
+  "environment": "staging",
+  "provider": "Neon Postgres",
+  "project": "neikos-hub-staging",
+  "database": "neondb",
+  "scope": "bounded correctness/stress smoke; not a production load benchmark or SLO certification",
+  "batch": {
+    "recordsPerRepository": 250,
+    "repositories": 4,
+    "totalInserted": 1000,
+    "totalUpdatedAndVerified": 1000,
+    "totalDeleted": 1000,
+    "remainingCertificationRows": 0
+  },
+  "repositories": {
+    "locker_records": {"inserted": 250, "updatedVerified": 250, "remaining": 0},
+    "collection_records": {"inserted": 250, "updatedVerified": 250, "remaining": 0},
+    "wishlist_records": {"inserted": 250, "updatedVerified": 250, "remaining": 0},
+    "asset_records": {"inserted": 250, "updatedVerified": 250, "remaining": 0}
+  },
+  "certification": {
+    "liveDatabaseUsed": true,
+    "transactionalBatchWritePassed": true,
+    "bulkUpdateReadbackPassed": true,
+    "cleanupPassed": true,
+    "zeroTestResidue": true,
+    "productionLoadSloCertified": false,
+    "prismaClientPathExercised": false,
+    "exactCandidateDeployed": false
+  },
+  "status": "LIVE_PERSISTENCE_STRESS_SMOKE_PASS_PRISMA_RUNTIME_PENDING"
+}

@@ -1,0 +1,38 @@
+{
+  "recordedAt": "2026-08-19T06:52:10.786Z",
+  "results": [
+    {
+      "id": "prisma_dependencies",
+      "status": "PASS"
+    },
+    {
+      "id": "next_dependencies",
+      "status": "PASS"
+    },
+    {
+      "id": "prisma_validate",
+      "status": "PASS",
+      "stdout": "> @neikos/persistence-prisma@0.1.0-authoring prisma:validate\n> prisma validate\n\nThe schema at prisma\\schema.prisma is valid 🚀"
+    },
+    {
+      "id": "prisma_generate",
+      "status": "PASS",
+      "stdout": "> @neikos/persistence-prisma@0.1.0-authoring prisma:generate\n> prisma generate\n\n\n✔ Generated Prisma Client (7.9.1) to .\\generated\\client in 57ms"
+    },
+    {
+      "id": "prisma_migrate_deploy",
+      "status": "BLOCKED",
+      "reason": "DATABASE_URL_NOT_CONFIGURED"
+    },
+    {
+      "id": "postgres_e2e",
+      "status": "BLOCKED",
+      "reason": "DATABASE_URL_NOT_CONFIGURED"
+    },
+    {
+      "id": "next_production_build",
+      "status": "PASS",
+      "stdout": "> @neikos/web-next@0.1.0-authoring build\n> next build\n\n▲ Next.js 16.3.1 (Turbopack)\n✓ Running next.config.mjs took 22ms\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 317ms\n  Running TypeScript ...\n  Finished TypeScript in 5ms ...\n  Collecting page data using 8 workers ...\n  Generating static pages using 8 workers (0/3) ...\n✓ Generating static pages using 8 workers (3/3) in 694ms\n  Finalizing page optimization ...\n\nRoute (app)\n┌ ○ /\n├ ○ /_not-found\n├ ƒ /api/v1/runtime/persistence\n├ ƒ /health/live\n├ ƒ /health/ready\n└ ƒ /meta/build\n\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand"
+    }
+  ]
+}

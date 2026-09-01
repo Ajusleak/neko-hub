@@ -1,0 +1,44 @@
+{
+  "phase": "P4-S5E",
+  "environment": "staging",
+  "provider": "Neon Postgres",
+  "project": {
+    "name": "neikos-hub-staging",
+    "projectId": "old-queen-82526886",
+    "database": "neondb",
+    "postgresVersion": "18.4"
+  },
+  "sourceMigration": "packages/persistence-prisma/prisma/migrations/20260816094500_initial_durable_records/migration.sql",
+  "sourcePrismaSchema": "packages/persistence-prisma/prisma/schema.prisma",
+  "observed": {
+    "tables": 4,
+    "columns": 12,
+    "primaryKeys": 4,
+    "primaryKeyIndexes": 4,
+    "unexpectedIndexes": 0,
+    "testResidueRows": 0
+  },
+  "expectedTables": [
+    "asset_records",
+    "collection_records",
+    "locker_records",
+    "wishlist_records"
+  ],
+  "contract": {
+    "id": "text NOT NULL primary key",
+    "payload": "jsonb NOT NULL",
+    "updatedAt": "timestamp(3) NOT NULL default CURRENT_TIMESTAMP"
+  },
+  "certification": {
+    "liveSchemaInspected": true,
+    "tableSetMatchesMigration": true,
+    "columnContractMatchesMigration": true,
+    "primaryKeyContractMatchesMigration": true,
+    "indexContractMatchesMigration": true,
+    "functionalSchemaDriftDetected": false,
+    "prismaCliValidated": false,
+    "exactCandidateDeployed": false
+  },
+  "status": "LIVE_SCHEMA_MATCH_CONFIRMED_PRISMA_RUNTIME_PENDING",
+  "recordedAt": "2026-08-16T22:26:44Z"
+}

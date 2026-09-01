@@ -1,0 +1,7 @@
+{
+  "gate": "P4-S5D-security-preflight",
+  "passed": true,
+  "findings": [],
+  "formalSecurityReview": "PENDING",
+  "note": "Automated repository preflight only; does not constitute formal security approval."
+}

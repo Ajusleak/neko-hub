@@ -1,0 +1,165 @@
+{
+  "phase": "P4-S1",
+  "scope": "local staging smoke only; not external staging or production evidence",
+  "startedAt": "2026-08-19T06:41:20.811Z",
+  "completedAt": "2026-08-19T06:41:20.895Z",
+  "durationMs": 84,
+  "checks": [
+    {
+      "name": "health-live",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "body": {
+          "status": "live",
+          "releaseVersion": "3.0.0-local-staging",
+          "deploymentId": "smoke-local"
+        }
+      }
+    },
+    {
+      "name": "health-ready",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "body": {
+          "status": "ready",
+          "checks": {
+            "adapter:identity": {
+              "ok": true,
+              "critical": true,
+              "durationMs": 0,
+              "details": {
+                "mode": "local-staging-header",
+                "nonProduction": true
+              }
+            },
+            "adapter:persistence": {
+              "ok": true,
+              "critical": true,
+              "durationMs": 0,
+              "details": {
+                "volatile": true,
+                "nonProduction": true
+              }
+            },
+            "adapter:events": {
+              "ok": true,
+              "critical": true,
+              "durationMs": 0,
+              "details": {
+                "volatile": true,
+                "nonProduction": true
+              }
+            },
+            "adapter:notifications": {
+              "ok": true,
+              "critical": true,
+              "durationMs": 0,
+              "details": {
+                "volatile": true,
+                "nonProduction": true
+              }
+            },
+            "adapter:fortnite": {
+              "ok": true,
+              "critical": true,
+              "durationMs": 0,
+              "details": {
+                "fixtureItems": 3,
+                "nonProduction": true
+              }
+            },
+            "adapter:ai": {
+              "ok": true,
+              "critical": true,
+              "durationMs": 0,
+              "details": {
+                "synthetic": true,
+                "nonProduction": true
+              }
+            },
+            "adapter:observability": {
+              "ok": true,
+              "critical": true,
+              "durationMs": 0,
+              "details": {
+                "exporter": "process",
+                "nonProduction": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "anonymous-search",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "resultCount": 2
+      }
+    },
+    {
+      "name": "deny-unauthenticated-mutation",
+      "ok": true,
+      "details": {
+        "status": 401,
+        "body": {
+          "error": {
+            "code": "unauthorized",
+            "message": "authentication required",
+            "missingScopes": [
+              "locker:write"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "authorized-locker-write",
+      "ok": true,
+      "details": {
+        "status": 201,
+        "body": {
+          "id": "staging-user-1:cid_fox",
+          "userId": "staging-user-1",
+          "itemId": "cid_fox",
+          "item": {
+            "id": "cid_fox",
+            "name": "Fox Empress",
+            "type": "outfit",
+            "description": "Violet NEIKOS creator outfit"
+          },
+          "favorite": false,
+          "updatedAt": "2026-08-19T06:41:20.885Z"
+        }
+      }
+    },
+    {
+      "name": "authorized-wishlist-write",
+      "ok": true,
+      "details": {
+        "status": 201,
+        "body": {
+          "id": "staging-user-1:cid_blade",
+          "userId": "staging-user-1",
+          "itemId": "cid_blade",
+          "priority": "high",
+          "note": "",
+          "updatedAt": "2026-08-19T06:41:20.892Z"
+        }
+      }
+    },
+    {
+      "name": "state-visible-through-facade",
+      "ok": true,
+      "details": {
+        "status": 200,
+        "lockerItems": 1,
+        "wishlistItems": 1
+      }
+    }
+  ],
+  "passed": true
+}

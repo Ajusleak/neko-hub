@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neikos.local/schemas/auth-context.schema.json",
+  "title": "NEIKOS Auth Context",
+  "type": "object",
+  "required": ["method", "scopes", "roles"],
+  "properties": {
+    "method": { "enum": ["anonymous", "session", "bearer", "service"] },
+    "subject": { "type": "string", "minLength": 1 },
+    "scopes": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "roles": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "sessionId": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

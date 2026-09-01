@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neikos.local/schemas/pagination.schema.json",
+  "title": "NEIKOS Pagination",
+  "type": "object",
+  "required": ["items", "page"],
+  "properties": {
+    "items": { "type": "array" },
+    "page": {
+      "type": "object",
+      "required": ["hasMore"],
+      "properties": {
+        "nextCursor": { "type": "string" },
+        "hasMore": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

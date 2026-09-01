@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neikos.local/schemas/event-envelope.schema.json",
+  "title": "NEIKOS Event Envelope",
+  "type": "object",
+  "required": ["eventId", "type", "version", "occurredAt", "producer", "payload"],
+  "properties": {
+    "eventId": { "type": "string", "minLength": 1 },
+    "type": { "type": "string", "minLength": 1 },
+    "version": { "type": "integer", "minimum": 1 },
+    "occurredAt": { "type": "string", "format": "date-time" },
+    "producer": { "type": "string", "minLength": 1 },
+    "correlationId": { "type": "string", "minLength": 1 },
+    "causationId": { "type": "string", "minLength": 1 },
+    "subject": { "type": "string", "minLength": 1 },
+    "payload": {}
+  },
+  "additionalProperties": false
+}

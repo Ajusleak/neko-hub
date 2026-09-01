@@ -1,0 +1,24 @@
+{
+  "environment": "production",
+  "releaseVersion": "REPLACE_AT_DEPLOYMENT",
+  "deploymentId": "REPLACE_AT_DEPLOYMENT",
+  "publicOrigin": "https://example.invalid",
+  "adapters": {
+    "identity": "REPLACE_WITH_APPROVED_ADAPTER",
+    "persistence": "REPLACE_WITH_APPROVED_ADAPTER",
+    "events": "REPLACE_WITH_APPROVED_ADAPTER",
+    "notifications": "REPLACE_WITH_APPROVED_ADAPTER",
+    "fortnite": "REPLACE_WITH_AUTHORIZED_ADAPTER",
+    "ai": "REPLACE_WITH_APPROVED_ADAPTER",
+    "observability": "REPLACE_WITH_APPROVED_ADAPTER"
+  },
+  "secretRefs": ["REPLACE_WITH_SECRET_MANAGER_REFERENCES"],
+  "gates": {
+    "securityReview": "pending",
+    "stagingSmoke": "pending",
+    "failureRecovery": "pending",
+    "loadTest": "pending",
+    "rollbackDrill": "pending",
+    "approval": "pending"
+  }
+}

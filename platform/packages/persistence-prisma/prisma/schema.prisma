@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model LockerRecord {
+  id        String   @id
+  payload   Json
+  updatedAt DateTime @updatedAt
+
+  @@map("locker_records")
+}
+
+model CollectionRecord {
+  id        String   @id
+  payload   Json
+  updatedAt DateTime @updatedAt
+
+  @@map("collection_records")
+}
+
+model WishlistRecord {
+  id        String   @id
+  payload   Json
+  updatedAt DateTime @updatedAt
+
+  @@map("wishlist_records")
+}
+
+model AssetRecord {
+  id        String   @id
+  payload   Json
+  updatedAt DateTime @updatedAt
+
+  @@map("asset_records")
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@neikos/web-next",
+  "version": "0.1.0-authoring",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "16.3.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "@neikos/persistence-prisma": "file:../../packages/persistence-prisma"
+  },
+  "type": "module"
+}

@@ -1,0 +1,16 @@
+{
+  "phase": "P4-S1",
+  "scope": "local process load smoke only; not capacity planning or production load-test evidence",
+  "totalRequests": 200,
+  "concurrency": 20,
+  "failures": 0,
+  "durationMs": 222,
+  "requestsPerSecond": 901,
+  "latencyMs": {
+    "p50": 14.26,
+    "p95": 71.19,
+    "p99": 75.43,
+    "max": 76.3
+  },
+  "passed": true
+}

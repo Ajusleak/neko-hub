@@ -1,0 +1,49 @@
+{
+  "phase": "P4-S1",
+  "scope": "local readiness failure/recovery behavior only",
+  "sequence": [
+    {
+      "dependencyHealthy": true,
+      "statusCode": 200,
+      "body": {
+        "status": "ready",
+        "checks": {
+          "synthetic-critical-dependency": {
+            "ok": true,
+            "critical": true,
+            "durationMs": 0
+          }
+        }
+      }
+    },
+    {
+      "dependencyHealthy": false,
+      "statusCode": 503,
+      "body": {
+        "status": "not_ready",
+        "checks": {
+          "synthetic-critical-dependency": {
+            "ok": false,
+            "critical": true,
+            "durationMs": 0
+          }
+        }
+      }
+    },
+    {
+      "dependencyHealthy": true,
+      "statusCode": 200,
+      "body": {
+        "status": "ready",
+        "checks": {
+          "synthetic-critical-dependency": {
+            "ok": true,
+            "critical": true,
+            "durationMs": 0
+          }
+        }
+      }
+    }
+  ],
+  "passed": true
+}

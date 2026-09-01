@@ -1,0 +1,63 @@
+name: NEIKOS Durable Runtime Gate
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'packages/persistence-prisma/**'
+      - 'apps/web-next/**'
+      - 'scripts/runtime-*.mjs'
+      - 'scripts/postgres-e2e.mjs'
+      - '.github/workflows/runtime-gate.yml'
+
+jobs:
+  durable-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: neikos
+          POSTGRES_PASSWORD: neikos_ci
+          POSTGRES_DB: neikos_runtime
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U neikos -d neikos_runtime"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      DATABASE_URL: postgresql://neikos:neikos_ci@127.0.0.1:5432/neikos_runtime?schema=public
+      NODE_ENV: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install runtime dependencies
+        run: npm run runtime:install
+      - name: Validate repository
+        run: npm run validate:repo
+      - name: Run regression suite
+        run: npm test
+      - name: Validate Prisma schema
+        run: npm run prisma:validate
+      - name: Generate Prisma Client
+        run: npm run prisma:generate
+      - name: Deploy PostgreSQL migrations
+        run: npm --prefix packages/persistence-prisma run prisma:migrate:deploy
+      - name: PostgreSQL-backed E2E
+        run: npm run e2e:postgres
+      - name: Build Next.js production application
+        run: npm run build:web-next
+      - name: Record full runtime gate
+        run: npm run runtime:gate
+      - name: Upload runtime evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: neikos-runtime-gate-evidence
+          path: .validation/

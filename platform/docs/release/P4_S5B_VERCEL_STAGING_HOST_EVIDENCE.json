@@ -1,0 +1,23 @@
+{
+  "project": "NEIKOS HUB",
+  "track": "P4-S5B Boundary Execution",
+  "recordedAt": "2026-08-16T19:59:55Z",
+  "provider": "Vercel",
+  "projectName": "neikos-hub-staging",
+  "deploymentId": "dpl_C26VaR2L6eQu4VeCYkvVdWKPKJGc",
+  "canonicalHost": "neikos-hub-staging.vercel.app",
+  "reportedPhase": "P4-S4",
+  "reportedEnvironment": "preview",
+  "reportedRegion": "iad1",
+  "reportedContract": "NEIKOS-P4-S3-1.0.0",
+  "checks": [
+    {"path": "/health/live", "httpStatus": 200, "result": "PASS", "reportedStatus": "live"},
+    {"path": "/health/ready", "httpStatus": 200, "result": "PASS", "reportedStatus": "ready", "scope": "host-runtime-only", "downstreamProviders": "not-certified"},
+    {"path": "/meta/release", "httpStatus": 200, "result": "PASS"}
+  ],
+  "candidateBinding": {
+    "exactP4S5BPackageProvenDeployed": false,
+    "reason": "The live deployment self-identifies as P4-S4 / NEIKOS-P4-S3-1.0.0 rather than the P4-S5B v1.1 durable candidate."
+  },
+  "conclusion": "External Vercel staging host smoke is PASS for the currently deployed host runtime. Exact-candidate deployment, durable downstream-provider readiness, Prisma runtime certification, and production release remain pending."
+}

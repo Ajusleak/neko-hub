@@ -1,0 +1,5 @@
+[
+  {"id":"cid_fox","name":"Fox Empress","type":"outfit","description":"Violet NEIKOS creator outfit"},
+  {"id":"cid_blade","name":"Fox Blade","type":"pickaxe","description":"Fox-themed harvesting tool"},
+  {"id":"cid_lumi","name":"LUMI Companion","type":"backpack","description":"NEIKOS companion collectible"}
+]

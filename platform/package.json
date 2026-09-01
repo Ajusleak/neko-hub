@@ -1,0 +1,37 @@
+{
+  "name": "@neikos/platform",
+  "version": "0.0.0-authoring",
+  "private": true,
+  "description": "NEIKOS HUB platform implementation worktree governed by NEOS.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "validate:repo": "node scripts/validate-repository.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "validate:readiness": "node scripts/validate-production-readiness.mjs",
+    "validate:release": "node scripts/validate-production-readiness.mjs --release",
+    "validate:staging": "node scripts/validate-local-staging.mjs",
+    "smoke:staging": "node scripts/smoke-local-staging.mjs",
+    "smoke:failure-recovery": "node scripts/failure-recovery-local-staging.mjs",
+    "smoke:load": "node scripts/load-smoke-local-staging.mjs",
+    "start:staging": "node apps/web/src/server-entry.mjs",
+    "validate:p4-s2": "node scripts/validate-p4-s2-wiring.mjs",
+    "prisma:validate": "npm --prefix packages/persistence-prisma run prisma:validate",
+    "prisma:generate": "npm --prefix packages/persistence-prisma run prisma:generate",
+    "build:web-next": "npm --prefix apps/web-next run build",
+    "runtime:gate": "node scripts/runtime-gate.mjs",
+    "e2e:postgres": "node scripts/postgres-e2e.mjs",
+    "validate:p4-s3": "node scripts/validate-p4-s3-runtime.mjs",
+    "runtime:preflight": "node scripts/runtime-preflight.mjs",
+    "runtime:install": "node scripts/runtime-install.mjs",
+    "validate:p4-s4": "node scripts/validate-p4-s4-ci.mjs",
+    "validate:p4-s5a": "node scripts/validate-p4-s5a-persistence.mjs",
+    "security:preflight": "node scripts/security-preflight.mjs",
+    "validate:p4-s5d": "node scripts/validate-p4-s5d.mjs",
+    "validate:p4-s5e": "node scripts/validate-p4-s5e.mjs",
+    "validate:p4-s5f": "node scripts/validate-p4-s5f.mjs",
+    "validate:p4-s5g": "node scripts/validate-p4-s5g.mjs",
+    "validate:p4-s5h": "node scripts/validate-p4-s5h.mjs"
+  }
+}

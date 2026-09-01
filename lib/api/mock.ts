@@ -1,9 +1,88 @@
-﻿import {AiQuerySchema,CosmeticSchema,type ApiSuccess,type CollectionSuccess,type Cosmetic} from "./contracts";
-const items:Cosmetic[]=[
-{id:"breakpoint",name:"Breakpoint",type:"Outfit",rarity:"Rare",series:"Neon Rift",set:"Waypoint",price:1200,image:"https://www.pngmart.com/files/22/Fornite-Breakpoint-PNG-Photos.png",trend:24,isNew:false,shopStatus:"In shop"},
-{id:"silver",name:"Silver Surfer",type:"Outfit",rarity:"Icon",series:"Marvel",set:"Silver Surfer",price:1500,image:"https://media.fortniteapi.io/images/2f16d55fcbd0f9e1046693995d23ae2c/full_featured.png",trend:18,isNew:false,shopStatus:"Last seen 2d"},
-{id:"ice",name:"Ice Crystal",type:"Outfit",rarity:"Epic",series:"Black Ice",set:"Black Ice",price:1500,image:"https://tryhardguides.com/wp-content/uploads/2021/12/ice-crystal-featured-1024x1024.png",trend:31,isNew:true,shopStatus:"New today"},
-{id:"toy",name:"Toy Trooper",type:"Outfit",rarity:"Uncommon",set:"Toy Soldier",price:800,image:"https://image.pngaaa.com/323/2445323-middle.png",trend:12,isNew:false,shopStatus:"Returns 4h"},
-{id:"drift",name:"Snow Drift",type:"Outfit",rarity:"Legendary",series:"Frozen",set:"Drift",price:2000,image:"https://www.pngmart.com/files/22/Fortnite-Snow-Drift-PNG-HD.png",trend:27,isNew:true,shopStatus:"In shop"}];
-const meta=(service:string)=>({requestId:crypto.randomUUID(),timestamp:new Date().toISOString(),service});const delay=(ms=240)=>new Promise(r=>setTimeout(r,ms));
-export const mockAdapter={async listCosmetics(query=""):Promise<CollectionSuccess<Cosmetic>>{await delay();const parsed=items.map(i=>CosmeticSchema.parse(i));const data=parsed.filter(i=>`${i.name} ${i.rarity} ${i.set}`.toLowerCase().includes(query.toLowerCase()));return{success:true,data,meta:{...meta("fortnite-data"),page:1,pageSize:24,total:data.length}}},async getLocker():Promise<ApiSuccess<{total:number;favorites:number;wishlist:number;completion:number}>>{await delay();return{success:true,data:{total:847,favorites:32,wishlist:18,completion:68},meta:meta("locker")}},async notifications(){await delay();const data=[{id:"n1",title:"Wishlist match",detail:"Breakpoint is back",category:"Shop",unread:true}];return{success:true as const,data,meta:{...meta("notifications"),page:1,pageSize:20,total:data.length}}},async aiQuery(input:string){const{query}=AiQuerySchema.parse({query:input});await delay(650);return{success:true as const,data:{answer:`Ice Crystal is the strongest match for “${query}”. It completes your Black Ice set and has risen 31% in community saves this week.`,sources:["Locker inventory","Item shop snapshot","Trend index"]},meta:meta("ai")}}};
+import {
+  AiQuerySchema,
+  CosmeticSchema,
+  type ApiSuccess,
+  type CollectionSuccess,
+  type Cosmetic,
+} from "./contracts";
+const meta = (service: string) => ({
+  requestId: crypto.randomUUID(),
+  timestamp: new Date().toISOString(),
+  service,
+});
+const delay = (ms = 240) => new Promise((resolve) => setTimeout(resolve, ms));
+export const mockAdapter = {
+  async listCosmetics(
+    query = "",
+    type = "mixed",
+  ): Promise<CollectionSuccess<Cosmetic>> {
+    const response = await fetch(
+      `/api/cosmetics?type=${encodeURIComponent(type)}&q=${encodeURIComponent(query)}&limit=72`,
+    );
+    if (!response.ok) throw new Error("Cosmetics are temporarily unavailable.");
+    const payload = (await response.json()) as {
+      data: Cosmetic[];
+      total: number;
+    };
+    const parsed = payload.data.map((item) => CosmeticSchema.parse(item));
+    return {
+      success: true,
+      data: parsed,
+      meta: {
+        ...meta("fortnite-data"),
+        page: 1,
+        pageSize: 30,
+        total: payload.total,
+      },
+    };
+  },
+  async getLocker(): Promise<
+    ApiSuccess<{
+      total: number;
+      favorites: number;
+      wishlist: number;
+      completion: number;
+    }>
+  > {
+    await delay();
+    return {
+      success: true,
+      data: { total: 847, favorites: 32, wishlist: 18, completion: 68 },
+      meta: meta("locker"),
+    };
+  },
+  async notifications() {
+    await delay();
+    const data = [
+      {
+        id: "n1",
+        title: "Wishlist match",
+        detail: "Breakpoint is back",
+        category: "Shop",
+        unread: true,
+      },
+    ];
+    return {
+      success: true as const,
+      data,
+      meta: {
+        ...meta("notifications"),
+        page: 1,
+        pageSize: 20,
+        total: data.length,
+      },
+    };
+  },
+  async aiQuery(input: string) {
+    const { query } = AiQuerySchema.parse({ query: input });
+    await delay(650);
+    return {
+      success: true as const,
+      data: {
+        answer: `A strong match for “${query}” is waiting in the live catalog. Compare its set, rarity, and return history before adding it.`,
+        sources: ["Live cosmetic catalog", "Trend index"],
+      },
+      meta: meta("ai"),
+    };
+  },
+};

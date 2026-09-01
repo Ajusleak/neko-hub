@@ -1,0 +1,12 @@
+{
+  "name": "@neikos/api-client",
+  "version": "0.0.0-authoring",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/client.mjs"
+    }
+  }
+}

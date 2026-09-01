@@ -1,0 +1,11 @@
+{
+  "gate": "P4-S5D-rollback-readiness",
+  "provider": "vercel",
+  "project": "neikos-hub-staging",
+  "deploymentId": "dpl_C26VaR2L6eQu4VeCYkvVdWKPKJGc",
+  "deploymentState": "READY",
+  "rollbackCandidate": true,
+  "rollbackDrillExecuted": false,
+  "status": "READY_FOR_DRILL",
+  "note": "Connected Vercel metadata identified this live staging deployment as rollback-eligible. No rollback action has been executed; rollback drill remains pending."
+}

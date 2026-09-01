@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neikos.local/schemas/deployment-profile.schema.json",
+  "title": "NEIKOS Deployment Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["environment", "releaseVersion", "deploymentId", "publicOrigin", "adapters", "secretRefs", "gates"],
+  "properties": {
+    "environment": { "enum": ["staging", "production"] },
+    "releaseVersion": { "type": "string", "minLength": 1 },
+    "deploymentId": { "type": "string", "minLength": 1 },
+    "publicOrigin": { "type": "string", "format": "uri" },
+    "adapters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "persistence", "events", "notifications", "fortnite", "ai", "observability"],
+      "properties": {
+        "identity": { "type": "string", "minLength": 1 },
+        "persistence": { "type": "string", "minLength": 1 },
+        "events": { "type": "string", "minLength": 1 },
+        "notifications": { "type": "string", "minLength": 1 },
+        "fortnite": { "type": "string", "minLength": 1 },
+        "ai": { "type": "string", "minLength": 1 },
+        "observability": { "type": "string", "minLength": 1 }
+      }
+    },
+    "secretRefs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["securityReview", "stagingSmoke", "failureRecovery", "loadTest", "rollbackDrill", "approval"],
+      "properties": {
+        "securityReview": { "enum": ["pending", "passed"] },
+        "stagingSmoke": { "enum": ["pending", "passed"] },
+        "failureRecovery": { "enum": ["pending", "passed"] },
+        "loadTest": { "enum": ["pending", "passed"] },
+        "rollbackDrill": { "enum": ["pending", "passed"] },
+        "approval": { "enum": ["pending", "passed"] }
+      }
+    }
+  }
+}

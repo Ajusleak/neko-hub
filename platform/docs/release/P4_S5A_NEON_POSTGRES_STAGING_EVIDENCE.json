@@ -1,0 +1,59 @@
+{
+  "phase": "P4-S5A",
+  "scope": "Persistence Provider Certification",
+  "environment": "staging",
+  "provider": "Neon Postgres",
+  "project": {
+    "name": "neikos-hub-staging",
+    "project_id": "old-queen-82526886",
+    "database": "neondb",
+    "region": "aws-us-east-2",
+    "postgres_version": "18.4"
+  },
+  "executed_at": "2026-08-16",
+  "schema": {
+    "migration_source": "packages/persistence-prisma/prisma/migrations/20260816094500_initial_durable_records/migration.sql",
+    "tables_verified": [
+      "locker_records",
+      "collection_records",
+      "wishlist_records",
+      "asset_records"
+    ],
+    "status": "PASS",
+    "note": "The repository migration SQL was applied directly to the staging PostgreSQL database. This is real PostgreSQL schema execution evidence, but it is not evidence that `prisma migrate deploy` itself executed."
+  },
+  "readiness": {
+    "connection": "PASS",
+    "query": "SELECT 1 equivalent verified through the connected database execution boundary",
+    "status": "PASS"
+  },
+  "crud": {
+    "locker": "PASS",
+    "collections": "PASS",
+    "wishlist": "PASS",
+    "assets": "PASS",
+    "update": "PASS",
+    "delete_cleanup": "PASS",
+    "test_residue_remaining": 0
+  },
+  "prisma_cli": {
+    "dependencies": "BLOCKED",
+    "validate": "NOT_EXECUTED",
+    "generate": "NOT_EXECUTED",
+    "migrate_deploy": "NOT_EXECUTED",
+    "reason": "The local execution container still cannot resolve npm registry hosts."
+  },
+  "nextjs": {
+    "dependencies": "BLOCKED",
+    "production_build": "NOT_EXECUTED",
+    "reason": "The local execution container still cannot resolve npm registry hosts."
+  },
+  "certification": {
+    "postgresql_reachable": true,
+    "schema_executed": true,
+    "durable_crud_executed": true,
+    "clean_state_verified": true,
+    "prisma_runtime_certified": false,
+    "nextjs_build_certified": false
+  }
+}
