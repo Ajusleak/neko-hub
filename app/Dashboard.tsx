@@ -143,6 +143,7 @@ type NewsItem = {
 
 export default function Dashboard() {
   const searchRef = useRef<HTMLInputElement>(null),
+    mobileNavRef = useRef<HTMLElement>(null),
     storageReady = useRef(false);
   const [active, setActive] = useState("Overview"),
     [category, setCategory] = useState("mixed"),
@@ -1551,7 +1552,12 @@ export default function Dashboard() {
             onClick={() => setSelected(null)}
             aria-label="Close cosmetic details"
           />
-          <aside className="detail-panel">
+          <aside
+            className="detail-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${selected.name} cosmetic details`}
+          >
             <header>
               <span>
                 {selected.type} · {selected.rarity}
@@ -1648,16 +1654,19 @@ export default function Dashboard() {
           </section>
         </>
       )}
-      <nav className="mobile-nav">
-        {nav
-          .filter(([label]) =>
-            ["Overview", "Cosmetics", "Item Shop", "Locker", "Sprites"].includes(label),
-          )
-          .map(([label, icon]) => (
+      <nav className="mobile-nav" ref={mobileNavRef}>
+        {nav.map(([label, icon]) => (
           <button
             key={label}
             className={active === label ? "active" : ""}
-            onClick={() => go(label)}
+            onClick={(event) => {
+              go(label);
+              event.currentTarget.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+                inline: "center",
+              });
+            }}
           >
             <span>{icon}</span>
             {label}
